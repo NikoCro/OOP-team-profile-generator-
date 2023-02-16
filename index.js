@@ -107,12 +107,12 @@ function addTeamMember() {
     .then((answers) => {
       if (answers.others === "engineer") {
         inquirer.prompt(engineerQuestions).then((answers) => {
-          list.push(answers);
+          list.push({ title: "engineer", ...answers });
           addTeamMember();
         });
       } else if (answers.others === "intern") {
         inquirer.prompt(internQuestions).then((answers) => {
-          list.push(answers);
+          list.push({ title: "intern", ...answers });
           addTeamMember();
         });
       } else if (answers.others === "nobody") {
