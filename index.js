@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Manager = require("./lib/manager");
 
 function generateHTML(manager, list) {
   return `<html lang="en">
@@ -89,7 +90,13 @@ let list = [];
 
 function start() {
   inquirer.prompt(mainQuestions).then((answers) => {
-    manager = answers;
+    manager = new Manager(
+      answers.name,
+      answers.id,
+      answers.email,
+      answers.officeNumber
+    );
+    list.push(manager);
     addTeamMember();
   });
 }
