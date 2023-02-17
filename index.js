@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 
 function generateHTML(Engineer, list) {
   return `<html lang="en">
@@ -126,7 +127,13 @@ function addTeamMember() {
         });
       } else if (answers.others === "intern") {
         inquirer.prompt(internQuestions).then((answers) => {
-          list.push({ title: "intern", ...answers });
+          intern = new Intern(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.school
+          );
+          list.push(intern);
           addTeamMember();
         });
       } else if (answers.others === "nobody") {
