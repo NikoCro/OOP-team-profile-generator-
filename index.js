@@ -1,8 +1,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
 
-function generateHTML(manager, list) {
+function generateHTML(Engineer, list) {
   return `<html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -114,7 +115,13 @@ function addTeamMember() {
     .then((answers) => {
       if (answers.others === "engineer") {
         inquirer.prompt(engineerQuestions).then((answers) => {
-          list.push({ title: "engineer", ...answers });
+          engineer = new Engineer(
+            answers.name,
+            answers.id,
+            answers.email,
+            answers.Github
+          );
+          list.push(engineer);
           addTeamMember();
         });
       } else if (answers.others === "intern") {
