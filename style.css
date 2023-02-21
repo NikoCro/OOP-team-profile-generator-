@@ -6,16 +6,16 @@ body {
 
 }
 
+
 .container {
     padding: 75px;
-    flex-direction: row;
-    align-items: center;
-    height: 100px;
-    width: 100px;
-
-
+    height: 200x;
+    width: 200px;
+    border-style: solid;
+    padding: 10px;
+    margin-right: 5px;
 }
 
-h2 {
+x h2 {
     color: blueviolet;
 }
