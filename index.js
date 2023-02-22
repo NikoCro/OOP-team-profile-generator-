@@ -4,15 +4,27 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
-function generateHTML(Engineer, list) {
+function generateHTML(manager, list) {
+  let managerHTML = `
+  <div class="container">
+      <h2>${manager.name}</h2>
+      <p>Title:Manager</p>
+      <p>ID:${manager.id} </p>
+      <p>Email:${manager.email}</p>
+      <p>Phone:${manager.officeNumber}</p>
+  </div>`;
+
   return `<html lang="en">
   <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="style.css">
       <title>Document</title>
   </head>
   <body>
+
+${managerHTML}
       
   </body>
   </html>`;
@@ -145,7 +157,7 @@ function addTeamMember() {
 function filloutHTML(manager, list) {
   const html = generateHTML(manager, list);
 
-  fs.writeFile("index.html", html, (err) =>
+  fs.writeFile("dist/index.html", html, (err) =>
     err ? console.log(err) : console.log("Successfully created index.html!")
   );
 }
