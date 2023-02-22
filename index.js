@@ -11,8 +11,20 @@ function generateHTML(manager, list) {
       <p>Title:Manager</p>
       <p>ID:${manager.id} </p>
       <p>Email:${manager.email}</p>
-      <p>Phone:${manager.officeNumber}</p>
+      <p>Phone:${manager.officenumber}</p>
   </div>`;
+
+  let listHTML = list.map((employee) => {
+    return `<div class="container">
+      <h2>${employee.name}</h2>
+      <p>Title:${employee.getRole()}</p>
+      <p>ID:${employee.id} </p>
+      <p>Email:${employee.email}</p>
+      <p>${employee.getRole() === "Engineer" ? "Github" : "School"}:${
+      employee.getRole() === "Engineer" ? employee.github : employee.school
+    }</p>
+  </div>`;
+  });
 
   return `<html lang="en">
   <head>
@@ -25,6 +37,9 @@ function generateHTML(manager, list) {
   <body>
 
 ${managerHTML}
+${listHTML.map((x) => {
+  return x;
+})}
       
   </body>
   </html>`;
@@ -71,7 +86,7 @@ const engineerQuestions = [
   },
   {
     type: "input",
-    name: "Github",
+    name: "github",
     message: "What is your Github page?",
   },
 ];
@@ -110,7 +125,7 @@ function start() {
       answers.email,
       answers.officeNumber
     );
-    list.push(manager);
+    manager = manager;
     addTeamMember();
   });
 }
@@ -132,7 +147,7 @@ function addTeamMember() {
             answers.name,
             answers.id,
             answers.email,
-            answers.Github
+            answers.github
           );
           list.push(engineer);
           addTeamMember();
